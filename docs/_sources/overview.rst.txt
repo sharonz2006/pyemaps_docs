@@ -47,15 +47,15 @@ In development
 Implementation
 --------------
 
-**pyemaps** is implemented as the object-oriented python modules supported by compiled
-Fortran-95 libraries that handle the backend computations. 
+*pyemaps* is implemented as the object-oriented python modules supported 
+by compiled Fortran-95 libraries that handle the backend computations. 
 
 Check out the :doc:`usage` section for further information, including how to
-:ref:`install <installation>` the project.
+:ref:`install <installation>` pyemaps package.
 
 .. note::
 
-   This project is under active Beta development phase. 
+   *pyemaps* is currently under active Beta development phase. 
 
 .. note::
 

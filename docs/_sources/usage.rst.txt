@@ -20,18 +20,18 @@ Enviroment Variables
 --------------------
 
 *PYEMAPS_DATA* environment variable is set to represent pyemaps' data home directory.
-It not only provides central location for organizing your own crystal data, but also 
+It provides a central location for organizing your own crystal data, and it is also used 
 for storing your simulation and calculation results.   
 
-**pyemaps** searches order for crystal files when only file name is provided:
+**pyemaps** searches crystal files in the following order when only file name is provided:
 
-1. Current working directory. Or
+1. Current working directory. 
 2. Data home directory pointed by *PYEMAPS_DATA*.
 
 For output from **pyemaps** simulations and calculations, the placement order is reversed:
 
-1. Data home directory pointed by *PYEMAPS_DATA* if it is set. Or
-2. Current working directory
+1. Data home directory pointed by *PYEMAPS_DATA* if it is set. 
+2. Current working directory.
 
 The layout of the pyemaps data home directory is as follows:
 
@@ -46,7 +46,7 @@ The layout of the pyemaps data home directory is as follows:
    
    The legacy environment variable $(PYEMAPS_CRYSTALS) is still supported if it is set.
 
-Kick-start pyemaps
+Quickstart pyemaps
 ------------------
 
 After *pyemaps* installation, run the following to check if the package is installed
@@ -58,7 +58,7 @@ the package:
    python -m pyemaps --version (-v)
    python -m pyemaps --copyright (-c)
 
-A liveness test for *pyemaps* basic kinematic function is also available:  
+A test for *pyemaps* basic kinematic function is also provided:  
 
 .. code-block:: console
 
@@ -66,18 +66,17 @@ A liveness test for *pyemaps* basic kinematic function is also available:
 
 All pyemaps simulations and calculations start from its 
 `Crystal class <pyemaps.crystals.html#pyemaps.crystals.Crystal>`_. 
-To import the class, run the follow:
+To import the class:
 
 .. code-block:: python
 
    from pyemaps import Crystal
 
-
 Before starting pyemaps diffraction simulation, the crystal
-object must be created and its data loaded. The following example
-creates a *si* crystal object by loading its database from pyemaps 
+object must be created and loaded. The following example
+creates a *si* crystal object by loading it from pyemaps 
+built-in database for Silicon crystal using 
 `from_builtin <pyemaps.crystals.html#pyemaps.crystals.Crystal.from_builtin>`_ 
-built-in database for Silicon crystal. 
 
 .. code-block:: python
  
@@ -87,13 +86,13 @@ built-in database for Silicon crystal.
 
 .. note::
    
-   Pyemaps provides methods for creating crystal objects from other 
-   data sources including those from CIF, JSON formatted files. Go to 
+   Pyemaps also provides methods for creating crystal objects from other 
+   data sources, including imports from CIF, JSON formatted files. Go to 
    `Crystal class <pyemaps.crystals.html#pyemaps.crystals.Crystal>`_
    for more details.
 
 
-Once the crystal object is created, it is ready for running simulations
+Once a crystal object is created and loaded` it is ready for simulations
 and calculations.   
 
 Kinematic Diffraction Simulation
@@ -130,16 +129,15 @@ Kinematic Diffraction Simulation
     # Show Diffraction patterns by hiding Miller Indices
     showDif(dpl, ishow=False)
 
-Here crystal class method *generateDP* call with all default control parameters results in 
-`kinmatic diffraction pattern <pyemaps.kdiffs.html#pyemaps.kdiffs.diffPattern>`_ (si_dp) . 
+Here crystal class method *generateDP* produces a 
+`kinmatic diffraction pattern <pyemaps.kdiffs.html#pyemaps.kdiffs.diffPattern>`_ (si_dp) 
+using all default control parameters . 
 
 Go to `generateDP <pyemaps.crystals.html#pyemaps.crystals.Crystal.generateDP>`_ for a complete
-and detailed set of control parameters for the simulation method. 
+list of control parameters. 
 
-Finally, *showDif* method in pyemaps `display module <pyemaps.display.html#module-pyemaps.display>`_  
-to visualize the Kikuchi lines, diffracted beanms in the *si_dp* diffraction pattern object. 
-
-Notice that *showDif* provides options for users to control whether to show Kikuchi lines or
+*showDif*, a method in the pyemaps `display module <pyemaps.display.html#module-pyemaps.display>`_  
+visualizes the *si_dp* diffraction pattern with options controling whether to show Kikuchi lines or
 Miller Indexes.
 
 Dynamic Diffraction Simulation - Bloch
@@ -169,32 +167,36 @@ Dynamic Diffraction Simulation - Bloch
     showBloch(bloch_imgs_list) 
     showBloch(bloch_imgs_list, bColor=True) 
 
-The crystal method *generateBloch* starts the dynamic diffraction simulation with 
-sampling resolution of 20. For a complete set of controls and input parameters for the simulation, 
+The crystal method *generateBloch* starts a Bloch wave dynamic diffraction simulation with 
+the sampling resolution of 20 pixels along the disk radius. 
+
+For a complete set of controls and input parameters for the Bloch simulation, 
 go to `generateBloch <pyemaps.crystals.html#pyemaps.crystals.Crystal.generateBloch>`_  
 
-Pyemaps also provides a helps class `BImgList <pyemaps.ddiffs.html#pyemaps.ddiffs.BlochImgs>`_
-and a images rendering method *showBloch* in `display module <pyemaps.display.html#module-pyemaps.display>`_ 
-to visualize the simulation resutls.
+Pyemaps also provides a helper class `BImgList <pyemaps.ddiffs.html#pyemaps.ddiffs.BlochImgs>`_
+and an image rendering method *showBloch* in `display module <pyemaps.display.html#module-pyemaps.display>`_ 
+visualizing the Bloch simulation results.
 
 .. note::
 
-   To generate multiple images with specified range of sample thickness and save 
-   them in raw image data file that can be imported into other visulization 
-   tools, see complete description of `generateBloch method 
-   <pyemaps.crystals.html#pyemaps.crystals.Crystal.generateBloch>`_.
+   To generate multiple images with a specified range of sample thickness 
+   and save them in raw image data file. See the description of `generateBloch method 
+   <pyemaps.crystals.html#pyemaps.crystals.Crystal.generateBloch>`_. 
+   
+   The raw image data file can be imprted into third party visualization tools
+   such as ImageJ (TODO link) and DigitalMicrograph. 
 
 .. note::
 
-   To start dynamic simultion session and retrieve scattering matrix and other
-   dynamic diffraction session data, see `getSCMatrix method 
+   To start a Bloch simultion session and retrieve the scattering matrix 
+   and other dynamic diffraction session information, see `getSCMatrix method 
    <pyemaps.crystals.html#pyemaps.crystals.Crystal.getSCMatrix>`_  
    between `beginBloch
    <pyemaps.crystals.html#pyemaps.crystals.Crystal.beginBloch>`_ and 
    `endBloch calls
    <pyemaps.crystals.html#pyemaps.crystals.Crystal.endBloch>`_.
 
-To see all crystal names in *pyemaps* built-in database, call 
+To see all crystal names in the *pyemaps* built-in database, call 
 `list_all_builtin_crystals: <pyemaps.crystals.html#pyemaps.crystals.Crystal.list_all_builtin_crystals>`_:
 
 .. code-block:: python
@@ -203,40 +205,38 @@ To see all crystal names in *pyemaps* built-in database, call
    cr.list_all_builtin_crystals()
 
 
-
 Samples code
 ------------
 
-Sample scripts designed for you to explore pyemaps features are available 
-in pyemaps' *samples* directory.
+Sample scripts for exploring *pyemaps* features are available in 
+pyemaps' *samples* directory.
 
-To copy all of the samples from **pyemaps** package installation directory
+To copy all sample scripts from *pyemaps* package installation directory
 to the current working directory, run:
 
 .. code-block:: console
 
    python -m pyemaps -cp
 
-all of the samples will be copied from **pyemaps** install directory to 
-a folder named *pyemaps_samples* in your current working directory:
+Below is a partial list of sample code:
 
 * *si_dif.py*: 
    shows how kinematic diffraction patterns is generated and rendered with 
    *matplotlib pyplot* module. The code also shows how a list of diffraction 
-   patterns are generated and changed with one of electron microscope and 
-   sample controls - tilt in x direction.
+   patterns are generated by changing one of electron microscope controls:
+   tilt in x direction.
 
 * *si_bloch.py*: 
-   demonstrates dynamic diffraction simulations by *bloch* pyemaps module
+   demonstrates dynamic diffraction simulations by *bloch* *pyemaps* module.
 
 * *si_csf.py*: 
-   generates and outputs structure factors by *CSF* pyemaps module. 
+   calculates and outputs structure factors using *CSF* *pyemaps* module. 
 
 * *powder.py*: 
-   calculates and displays electron powder diffraction with intensity plot by 
-   *Powder* pyemaps module. 
+   calculates and plots electron powder diffraction pattern using 
+   *Powder* *pyemaps* module. 
 
 * *si_stereo.py*: 
-   prodcues and shows stereodiagram by **pyemaps** *Stereo* module. 
+   plots stereodiagram using *Stereo* *pyemaps* module. 
 
 More samples code will be added as more features and releases are available. 

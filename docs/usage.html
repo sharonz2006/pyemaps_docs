@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Getting Started &#8212; pyemaps 1.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -60,17 +60,17 @@
 <section id="enviroment-variables">
 <span id="environment-variables"></span><h2>Enviroment Variables<a class="headerlink" href="#enviroment-variables" title="Permalink to this heading">¶</a></h2>
 <p><em>PYEMAPS_DATA</em> environment variable is set to represent pyemaps’ data home directory.
-It not only provides central location for organizing your own crystal data, but also
+It provides a central location for organizing your own crystal data, and it is also used
 for storing your simulation and calculation results.</p>
-<p><strong>pyemaps</strong> searches order for crystal files when only file name is provided:</p>
+<p><strong>pyemaps</strong> searches crystal files in the following order when only file name is provided:</p>
 <ol class="arabic simple">
-<li><p>Current working directory. Or</p></li>
+<li><p>Current working directory.</p></li>
 <li><p>Data home directory pointed by <em>PYEMAPS_DATA</em>.</p></li>
 </ol>
 <p>For output from <strong>pyemaps</strong> simulations and calculations, the placement order is reversed:</p>
 <ol class="arabic simple">
-<li><p>Data home directory pointed by <em>PYEMAPS_DATA</em> if it is set. Or</p></li>
-<li><p>Current working directory</p></li>
+<li><p>Data home directory pointed by <em>PYEMAPS_DATA</em> if it is set.</p></li>
+<li><p>Current working directory.</p></li>
 </ol>
 <p>The layout of the pyemaps data home directory is as follows:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span><span class="o">(</span>PYEMAPS_DATA<span class="o">)=</span>&lt;<span class="nb">local</span> directory&gt;  <span class="c1"># pyemaps data home, must have read and write permisions</span>
@@ -84,8 +84,8 @@ for storing your simulation and calculation results.</p>
 <p>The legacy environment variable $(PYEMAPS_CRYSTALS) is still supported if it is set.</p>
 </div>
 </section>
-<section id="kick-start-pyemaps">
-<h2>Kick-start pyemaps<a class="headerlink" href="#kick-start-pyemaps" title="Permalink to this heading">¶</a></h2>
+<section id="quickstart-pyemaps">
+<h2>Quickstart pyemaps<a class="headerlink" href="#quickstart-pyemaps" title="Permalink to this heading">¶</a></h2>
 <p>After <em>pyemaps</em> installation, run the following to check if the package is installed
 and setup correctly on your system by verifying the version and other information about
 the package:</p>
@@ -93,21 +93,21 @@ the package:</p>
 <span class="go">python -m pyemaps --copyright (-c)</span>
 </pre></div>
 </div>
-<p>A liveness test for <em>pyemaps</em> basic kinematic function is also available:</p>
+<p>A test for <em>pyemaps</em> basic kinematic function is also provided:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pyemaps --sample (-s)</span>
 </pre></div>
 </div>
 <p>All pyemaps simulations and calculations start from its
 <a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal">Crystal class</a>.
-To import the class, run the follow:</p>
+To import the class:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyemaps</span> <span class="kn">import</span> <span class="n">Crystal</span>
 </pre></div>
 </div>
 <p>Before starting pyemaps diffraction simulation, the crystal
-object must be created and its data loaded. The following example
-creates a <em>si</em> crystal object by loading its database from pyemaps
-<a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal.from_builtin">from_builtin</a>
-built-in database for Silicon crystal.</p>
+object must be created and loaded. The following example
+creates a <em>si</em> crystal object by loading it from pyemaps
+built-in database for Silicon crystal using
+<a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal.from_builtin">from_builtin</a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyemaps</span> <span class="kn">import</span> <span class="n">Crystal</span> <span class="k">as</span> <span class="n">cr</span>
 
 <span class="n">si</span> <span class="o">=</span> <span class="n">cr</span><span class="o">.</span><span class="n">from_builtin</span><span class="p">(</span><span class="s1">&#39;Silicon&#39;</span><span class="p">)</span>
@@ -115,12 +115,12 @@ built-in database for Silicon crystal.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Pyemaps provides methods for creating crystal objects from other
-data sources including those from CIF, JSON formatted files. Go to
+<p>Pyemaps also provides methods for creating crystal objects from other
+data sources, including imports from CIF, JSON formatted files. Go to
 <a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal">Crystal class</a>
 for more details.</p>
 </div>
-<p>Once the crystal object is created, it is ready for running simulations
+<p>Once a crystal object is created and loaded` it is ready for simulations
 and calculations.</p>
 <section id="kinematic-diffraction-simulation">
 <h3>Kinematic Diffraction Simulation<a class="headerlink" href="#kinematic-diffraction-simulation" title="Permalink to this heading">¶</a></h3>
@@ -154,13 +154,13 @@ and calculations.</p>
 <span class="n">showDif</span><span class="p">(</span><span class="n">dpl</span><span class="p">,</span> <span class="n">ishow</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Here crystal class method <em>generateDP</em> call with all default control parameters results in
-<a class="reference external" href="pyemaps.kdiffs.html#pyemaps.kdiffs.diffPattern">kinmatic diffraction pattern</a> (si_dp) .</p>
+<p>Here crystal class method <em>generateDP</em> produces a
+<a class="reference external" href="pyemaps.kdiffs.html#pyemaps.kdiffs.diffPattern">kinmatic diffraction pattern</a> (si_dp)
+using all default control parameters .</p>
 <p>Go to <a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal.generateDP">generateDP</a> for a complete
-and detailed set of control parameters for the simulation method.</p>
-<p>Finally, <em>showDif</em> method in pyemaps <a class="reference external" href="pyemaps.display.html#module-pyemaps.display">display module</a>
-to visualize the Kikuchi lines, diffracted beanms in the <em>si_dp</em> diffraction pattern object.</p>
-<p>Notice that <em>showDif</em> provides options for users to control whether to show Kikuchi lines or
+list of control parameters.</p>
+<p><em>showDif</em>, a method in the pyemaps <a class="reference external" href="pyemaps.display.html#module-pyemaps.display">display module</a>
+visualizes the <em>si_dp</em> diffraction pattern with options controling whether to show Kikuchi lines or
 Miller Indexes.</p>
 </section>
 <section id="dynamic-diffraction-simulation-bloch">
@@ -188,26 +188,28 @@ Miller Indexes.</p>
 <span class="n">showBloch</span><span class="p">(</span><span class="n">bloch_imgs_list</span><span class="p">,</span> <span class="n">bColor</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The crystal method <em>generateBloch</em> starts the dynamic diffraction simulation with
-sampling resolution of 20. For a complete set of controls and input parameters for the simulation,
+<p>The crystal method <em>generateBloch</em> starts a Bloch wave dynamic diffraction simulation with
+the sampling resolution of 20 pixels along the disk radius.</p>
+<p>For a complete set of controls and input parameters for the Bloch simulation,
 go to <a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal.generateBloch">generateBloch</a></p>
-<p>Pyemaps also provides a helps class <a class="reference external" href="pyemaps.ddiffs.html#pyemaps.ddiffs.BlochImgs">BImgList</a>
-and a images rendering method <em>showBloch</em> in <a class="reference external" href="pyemaps.display.html#module-pyemaps.display">display module</a>
-to visualize the simulation resutls.</p>
+<p>Pyemaps also provides a helper class <a class="reference external" href="pyemaps.ddiffs.html#pyemaps.ddiffs.BlochImgs">BImgList</a>
+and an image rendering method <em>showBloch</em> in <a class="reference external" href="pyemaps.display.html#module-pyemaps.display">display module</a>
+visualizing the Bloch simulation results.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To generate multiple images with specified range of sample thickness and save
-them in raw image data file that can be imported into other visulization
-tools, see complete description of <a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal.generateBloch">generateBloch method</a>.</p>
+<p>To generate multiple images with a specified range of sample thickness
+and save them in raw image data file. See the description of <a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal.generateBloch">generateBloch method</a>.</p>
+<p>The raw image data file can be imprted into third party visualization tools
+such as ImageJ (TODO link) and DigitalMicrograph.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To start dynamic simultion session and retrieve scattering matrix and other
-dynamic diffraction session data, see <a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal.getSCMatrix">getSCMatrix method</a>
+<p>To start a Bloch simultion session and retrieve the scattering matrix
+and other dynamic diffraction session information, see <a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal.getSCMatrix">getSCMatrix method</a>
 between <a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal.beginBloch">beginBloch</a> and
 <a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal.endBloch">endBloch calls</a>.</p>
 </div>
-<p>To see all crystal names in <em>pyemaps</em> built-in database, call
+<p>To see all crystal names in the <em>pyemaps</em> built-in database, call
 <a class="reference external" href="pyemaps.crystals.html#pyemaps.crystals.Crystal.list_all_builtin_crystals">list_all_builtin_crystals:</a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyemaps</span> <span class="kn">import</span> <span class="n">Crystal</span> <span class="k">as</span> <span class="n">cr</span>
 <span class="n">cr</span><span class="o">.</span><span class="n">list_all_builtin_crystals</span><span class="p">()</span>
@@ -217,42 +219,41 @@ between <a class="reference external" href="pyemaps.crystals.html#pyemaps.crysta
 </section>
 <section id="samples-code">
 <h2>Samples code<a class="headerlink" href="#samples-code" title="Permalink to this heading">¶</a></h2>
-<p>Sample scripts designed for you to explore pyemaps features are available
-in pyemaps’ <em>samples</em> directory.</p>
-<p>To copy all of the samples from <strong>pyemaps</strong> package installation directory
+<p>Sample scripts for exploring <em>pyemaps</em> features are available in
+pyemaps’ <em>samples</em> directory.</p>
+<p>To copy all sample scripts from <em>pyemaps</em> package installation directory
 to the current working directory, run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m pyemaps -cp</span>
 </pre></div>
 </div>
-<p>all of the samples will be copied from <strong>pyemaps</strong> install directory to
-a folder named <em>pyemaps_samples</em> in your current working directory:</p>
+<p>Below is a partial list of sample code:</p>
 <ul class="simple">
 <li><dl class="simple">
 <dt><em>si_dif.py</em>:</dt><dd><p>shows how kinematic diffraction patterns is generated and rendered with
 <em>matplotlib pyplot</em> module. The code also shows how a list of diffraction
-patterns are generated and changed with one of electron microscope and
-sample controls - tilt in x direction.</p>
+patterns are generated by changing one of electron microscope controls:
+tilt in x direction.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><em>si_bloch.py</em>:</dt><dd><p>demonstrates dynamic diffraction simulations by <em>bloch</em> pyemaps module</p>
+<dt><em>si_bloch.py</em>:</dt><dd><p>demonstrates dynamic diffraction simulations by <em>bloch</em> <em>pyemaps</em> module.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><em>si_csf.py</em>:</dt><dd><p>generates and outputs structure factors by <em>CSF</em> pyemaps module.</p>
+<dt><em>si_csf.py</em>:</dt><dd><p>calculates and outputs structure factors using <em>CSF</em> <em>pyemaps</em> module.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><em>powder.py</em>:</dt><dd><p>calculates and displays electron powder diffraction with intensity plot by
-<em>Powder</em> pyemaps module.</p>
+<dt><em>powder.py</em>:</dt><dd><p>calculates and plots electron powder diffraction pattern using
+<em>Powder</em> <em>pyemaps</em> module.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><em>si_stereo.py</em>:</dt><dd><p>prodcues and shows stereodiagram by <strong>pyemaps</strong> <em>Stereo</em> module.</p>
+<dt><em>si_stereo.py</em>:</dt><dd><p>plots stereodiagram using <em>Stereo</em> <em>pyemaps</em> module.</p>
 </dd>
 </dl>
 </li>
@@ -275,7 +276,7 @@ sample controls - tilt in x direction.</p>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#enviroment-variables">Enviroment Variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kick-start-pyemaps">Kick-start pyemaps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quickstart-pyemaps">Quickstart pyemaps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#samples-code">Samples code</a></li>
 </ul>
 </li>
